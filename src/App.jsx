@@ -27,9 +27,9 @@ function App() {
         <Route index element={<Login />} />
         <Route path="/home" element={<Home />} />
         <Route path="/logout" element={<Logout />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="*" element={<Login />} />
         <Route path="/register" element={<RegisterAndLogout />} />
-        <Route path="*" element={<NotFound />}></Route>
+        {/* <Route path="*" element={<NotFound />}></Route> */}
       </Routes>
     </Router>
   );
