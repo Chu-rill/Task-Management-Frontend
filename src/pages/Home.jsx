@@ -1,15 +1,17 @@
+import Task from "@/components/Task";
 import React, { useState, useEffect } from "react";
+import "../styles/Home.css";
 
 function Home() {
-  const [notes, setNotes] = useState([]);
+  const [Tasks, setTasks] = useState([]);
   const [content, setContent] = useState("");
   const [task, setTask] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
 
   const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNodXJjaGlsbEBmYWtlLmNvbSIsImlkIjoxLCJpYXQiOjE3MTUzNTQ3MzQsImV4cCI6MTcxNTM2MTkzNH0.6Dch5_LLCVReygeHtxuyGwPkd53BLvItNCKjstv83Xw";
-
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNodXJjaGlsbEBmYWtlLmNvbSIsImlkIjoxLCJpYXQiOjE3MTU0MTY0OTEsImV4cCI6MTcxNTQyMzY5MX0.gwY17AnkkXhj48irB2ADIWlDcX3Zh2P0s8CIpfreIho";
+  // 1.34
   const getTask = () => {
     const requestOptions = {
       method: "GET",
@@ -21,7 +23,7 @@ function Home() {
     fetch("http://localhost:3000/task/getAllTask", requestOptions)
       .then((res) => res.json())
       .then((data) => {
-        setNotes(data.quote ? [data.quote] : []);
+        setTasks(data.data);
         console.log(data);
       })
       .catch((error) => {
@@ -36,20 +38,24 @@ function Home() {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
-    };
-    fetch("http://localhost:3000/task/delete", {
-      requestOptions,
       body: JSON.stringify({
         id: id,
       }),
-    }).then((res) => {
-      if (res.status === 204) {
-        alert("Task deleted");
-      } else {
-        alert("Failed to delete Task");
-      }
-    });
-    getTask();
+    };
+
+    fetch("http://localhost:3000/task/delete", requestOptions)
+      .then((res) => {
+        if (res.message === "Successful") {
+          alert("Task deleted");
+          getTask(); // Refresh task list after deleting task
+        } else {
+          alert("Failed to delete Task");
+        }
+      })
+      .catch((error) => {
+        console.error("Delete Task Error:", error);
+        alert("Failed to delete Task: " + error.message);
+      });
   };
 
   const createTask = (e) => {
@@ -81,7 +87,6 @@ function Home() {
       .catch((error) => {
         alert();
       });
-    getTask();
     setCategory("");
     setTask("");
     setDescription("");
@@ -94,9 +99,12 @@ function Home() {
     <>
       <div>
         <h2>Tasks</h2>
+        {Tasks.map((task) => (
+          <Task task={task} onDelete={deleteTask} key={task.id} />
+        ))}
       </div>
       <h2>Create Task</h2>
-      <form onSubmit={createTask} className=" bg-black">
+      <form onSubmit={createTask}>
         <label htmlFor="task">Task:</label>
         <br />
         <input
@@ -129,9 +137,7 @@ function Home() {
         />
         <br />
         {/* <input type="submit" value="Submit"></input> */}
-        <button className=" text-white" onClick={createTask}>
-          Submit
-        </button>
+        <button onClick={createTask}>Submit</button>
       </form>
     </>
   );

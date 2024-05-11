@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate hook
 import { Link } from "react-router-dom";
+import LoadingIndicator from "@/components/LoadingIndicator";
 
 function Register() {
   const [user, setUser] = useState("");
@@ -70,6 +71,7 @@ function Register() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
+          {loading && <LoadingIndicator />}
           <button
             className="w-full bg-purple-600 text-white py-2 rounded-md hover:bg-purple-700 transition duration-300"
             type="submit"

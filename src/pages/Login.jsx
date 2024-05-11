@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 // import { useNavigate } from "react-router-dom";
 import { Link, useNavigate } from "react-router-dom";
-
+import LoadingIndicator from "@/components/LoadingIndicator";
 // const navigate = useNavigate();
 function Login(props) {
   const [email, setEmail] = useState("");
@@ -60,6 +60,7 @@ function Login(props) {
           value={pass}
           onChange={(e) => setPass(e.target.value)}
         />
+        {loading && <LoadingIndicator />}
         <button
           className="w-full bg-purple-600 text-white py-2 rounded-md hover:bg-purple-700 transition duration-300"
           onClick={auth}
