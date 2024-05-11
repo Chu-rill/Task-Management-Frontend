@@ -10,7 +10,7 @@ function Home() {
   const [category, setCategory] = useState("");
 
   const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNodXJjaGlsbEBmYWtlLmNvbSIsImlkIjoxLCJpYXQiOjE3MTU0MTY0OTEsImV4cCI6MTcxNTQyMzY5MX0.gwY17AnkkXhj48irB2ADIWlDcX3Zh2P0s8CIpfreIho";
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNodXJjaGlsbEBmYWtlLmNvbSIsImlkIjoxLCJpYXQiOjE3MTU0MzY5NjAsImV4cCI6MTcxNTQ0NDE2MH0.sHz0soWkQjDW9DK0gQ_vILGVUyBzvIQatkP9sdFif4Q";
   // 1.34
   const getTask = () => {
     const requestOptions = {
@@ -31,7 +31,11 @@ function Home() {
       });
   };
 
-  const deleteTask = () => {
+  const deleteTask = (id) => {
+    // Ensure that id is not undefined
+    if (typeof id === "undefined") {
+      throw new Error("id is required");
+    }
     const requestOptions = {
       method: "DELETE",
       headers: {
@@ -45,7 +49,7 @@ function Home() {
 
     fetch("http://localhost:3000/task/delete", requestOptions)
       .then((res) => {
-        if (res.message === "Successful") {
+        if (res) {
           alert("Task deleted");
           getTask(); // Refresh task list after deleting task
         } else {
@@ -99,7 +103,7 @@ function Home() {
     <>
       <div>
         <h2>Tasks</h2>
-        <div className="flex flex-wrap">
+        <div className="main flex flex-wrap">
           {Tasks.map((task) => (
             <Task task={task} onDelete={deleteTask} key={task.id} />
           ))}

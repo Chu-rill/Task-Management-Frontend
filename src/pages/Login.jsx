@@ -6,12 +6,14 @@ import LoadingIndicator from "@/components/LoadingIndicator";
 function Login(props) {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
-  const [showPopover, setShowPopover] = useState(false);
+  const [loading, setLoading] = useState(false);
+  // const [showPopover, setShowPopover] = useState(false);
   const navigate = useNavigate();
 
   // a basic function to check id there an empty input field
   async function auth() {
     if (email === "" || pass === "") {
+      setLoading(true);
       alert("Empty input Field");
     } else {
       try {
@@ -38,6 +40,8 @@ function Login(props) {
         navigate("/home");
       } catch (error) {
         alert(error);
+      } finally {
+        setLoading(false);
       }
     }
   }

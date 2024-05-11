@@ -1,5 +1,9 @@
 import React from "react";
 import "../styles/Note.css";
+// import LoadingIndicator from "@/components/LoadingIndicator";
+// {
+//   loading && <LoadingIndicator />;
+// }
 
 function Task({ task, onDelete }) {
   const options = {
