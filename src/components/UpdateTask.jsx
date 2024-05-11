@@ -94,14 +94,14 @@ export function UpdateTask({
         {/* <Button variant="outline"></Button> */}
         <button>Update Task</button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-[425px] bg-neutral-800">
         <DialogHeader>
-          <DialogTitle>Update Task</DialogTitle>
+          <DialogTitle className=" text-white">Update Task</DialogTitle>
           {/* <DialogDescription>
             Make changes to your profile here. Click save when you're done.
           </DialogDescription> */}
         </DialogHeader>
-        <form className=" bg-gray-600">
+        <form className=" ">
           <h2>Update Task</h2>
           <label htmlFor="task">Task:</label>
           <br />
@@ -138,7 +138,10 @@ export function UpdateTask({
         </form>
         <DialogFooter>
           {/* <Button type="submit">Save changes</Button> */}
-          <button className="button" onClick={() => updateTask(null, tasks.id)}>
+          <button
+            className="button mx-auto"
+            onClick={() => updateTask(null, tasks.id)}
+          >
             Submit
           </button>
         </DialogFooter>

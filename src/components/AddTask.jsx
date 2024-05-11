@@ -21,18 +21,18 @@ export function AddTask({
   category,
 }) {
   return (
-    <Dialog className=" custom-dialog">
+    <Dialog className=" bg-neutral-800 custom-dialog">
       <DialogTrigger asChild>
         <Button variant="outline">Add Task</Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-[425px] bg-neutral-800">
         <DialogHeader>
-          <DialogTitle>Add Task</DialogTitle>
+          <DialogTitle className=" text-white">Add Task</DialogTitle>
           {/* <DialogDescription>
             Make changes to your profile here. Click save when you're done.
           </DialogDescription> */}
         </DialogHeader>
-        <form onSubmit={createTask} className=" bg-gray-600">
+        <form onSubmit={createTask} className=" ">
           <h2>Create Task</h2>
           <label htmlFor="task">Task:</label>
           <br />
@@ -69,7 +69,7 @@ export function AddTask({
         </form>
         <DialogFooter>
           {/* <Button type="submit">Save changes</Button> */}
-          <button className="button" onClick={createTask}>
+          <button className="button mx-auto" onClick={createTask}>
             Submit
           </button>
         </DialogFooter>
