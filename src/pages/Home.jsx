@@ -2,6 +2,7 @@ import Task from "@/components/Task";
 import React, { useState, useEffect } from "react";
 import "../styles/Home.css";
 import AddTask from "@/components/AddTask";
+import { getToken } from "../jwt";
 
 function Home() {
   const [Tasks, setTasks] = useState([]);
@@ -9,8 +10,8 @@ function Home() {
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
 
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNodXJjaGlsbEBmYWtlLmNvbSIsImlkIjoxLCJpYXQiOjE3MTU0NTMyNjcsImV4cCI6MTcxNTQ2MDQ2N30.igpUnRyX7MA5Rh0H93cILQRwLHpg9EFc8ip5Vilt2jM";
+  const token = getToken();
+
   // 1.34
   const getTask = () => {
     const requestOptions = {

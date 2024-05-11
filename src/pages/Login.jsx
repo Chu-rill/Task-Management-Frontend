@@ -2,6 +2,8 @@ import React, { useState } from "react";
 // import { useNavigate } from "react-router-dom";
 import { Link, useNavigate } from "react-router-dom";
 import LoadingIndicator from "@/components/LoadingIndicator";
+import { storeToken } from "../jwt";
+
 // const navigate = useNavigate();
 function Login(props) {
   const [email, setEmail] = useState("");
@@ -36,6 +38,11 @@ function Login(props) {
         setEmail("");
 
         console.log(res);
+        const token = res.token;
+        console.log("token:" + token);
+
+        // Store token in session storage
+        storeToken(token);
         alert("User Login");
         navigate("/home");
       } catch (error) {
