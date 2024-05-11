@@ -5,13 +5,12 @@ import AddTask from "@/components/AddTask";
 
 function Home() {
   const [Tasks, setTasks] = useState([]);
-  const [content, setContent] = useState("");
   const [task, setTask] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
 
   const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNodXJjaGlsbEBmYWtlLmNvbSIsImlkIjoxLCJpYXQiOjE3MTU0MzY5NjAsImV4cCI6MTcxNTQ0NDE2MH0.sHz0soWkQjDW9DK0gQ_vILGVUyBzvIQatkP9sdFif4Q";
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNodXJjaGlsbEBmYWtlLmNvbSIsImlkIjoxLCJpYXQiOjE3MTU0NTMyNjcsImV4cCI6MTcxNTQ2MDQ2N30.igpUnRyX7MA5Rh0H93cILQRwLHpg9EFc8ip5Vilt2jM";
   // 1.34
   const getTask = () => {
     const requestOptions = {
@@ -117,7 +116,18 @@ function Home() {
         </div>
         <div className=" sm:flex sm:flex-wrap">
           {Tasks.map((task) => (
-            <Task task={task} onDelete={deleteTask} key={task.id} />
+            <Task
+              tasks={task}
+              onDelete={deleteTask}
+              key={task.id}
+              // updateTask={updateTask}
+              // setTask={setTask}
+              // setDescription={setDescription}
+              // setCategory={setCategory}
+              // task={task}
+              // description={description}
+              // category={category}
+            />
           ))}
         </div>
       </div>

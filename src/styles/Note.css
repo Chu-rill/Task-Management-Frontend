@@ -38,3 +38,17 @@
 .delete-button:hover {
   background-color: #b71540; /* Darker red */
 }
+.update-button {
+  background-color: #007bff; /* blue */
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-left: 15px;
+}
+
+.update-button:hover {
+  background-color: #0056b3; /* Darker blue */
+}
