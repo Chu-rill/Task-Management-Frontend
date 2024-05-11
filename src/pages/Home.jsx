@@ -1,6 +1,7 @@
 import Task from "@/components/Task";
 import React, { useState, useEffect } from "react";
 import "../styles/Home.css";
+import AddTask from "@/components/AddTask";
 
 function Home() {
   const [Tasks, setTasks] = useState([]);
@@ -100,52 +101,27 @@ function Home() {
     getTask();
   }, []);
   return (
-    <>
+    <div className=" bg-neutral-800 overflow-hidden">
       <div>
-        <h2>Tasks</h2>
-        <div className="main flex flex-wrap">
+        <div className=" mt-3 flex justify-around">
+          <h2 className=" font-mono text-3xl text-white ml-2">Tasks</h2>
+          <AddTask
+            createTask={createTask}
+            setTask={setTask}
+            setDescription={setDescription}
+            setCategory={setCategory}
+            task={task}
+            description={description}
+            category={category}
+          />
+        </div>
+        <div className=" sm:flex sm:flex-wrap">
           {Tasks.map((task) => (
             <Task task={task} onDelete={deleteTask} key={task.id} />
           ))}
         </div>
       </div>
-      <h2>Create Task</h2>
-      <form onSubmit={createTask}>
-        <label htmlFor="task">Task:</label>
-        <br />
-        <input
-          type="text"
-          name="task"
-          value={task}
-          id="task"
-          required
-          onChange={(e) => setTask(e.target.value)}
-        />
-        <label htmlFor="description">Description:</label>
-        <br />
-        <textarea
-          name="description"
-          id="description"
-          required
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        ></textarea>
-        <br />
-        <label htmlFor="category">Category:</label>
-        <br />
-        <input
-          type="text"
-          name="category"
-          value={category}
-          id="category"
-          required
-          onChange={(e) => setCategory(e.target.value)}
-        />
-        <br />
-        {/* <input type="submit" value="Submit"></input> */}
-        <button onClick={createTask}>Submit</button>
-      </form>
-    </>
+    </div>
   );
 }
 

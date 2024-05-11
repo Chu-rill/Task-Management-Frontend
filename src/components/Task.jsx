@@ -22,7 +22,7 @@ function Task({ task, onDelete }) {
 
   return (
     <>
-      <div className="note-container mx-auto">
+      <div className="note-container sm:w-[45%] m-4 w-[80%] bg-gray-800 text-white mx-auto">
         <h1>Task:</h1>
         <h2 className="note-title">{task.task}</h2>
         <h2>Description:</h2>

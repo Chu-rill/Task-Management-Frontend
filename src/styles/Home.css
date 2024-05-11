@@ -2,7 +2,9 @@
 div {
   font-family: Arial, sans-serif;
 }
-
+/* body {
+  background-color: rgba(38, 38, 38, 1);
+} */
 /* Styles for the notes section */
 .notes-section {
   margin-bottom: 2rem;
@@ -24,8 +26,9 @@ div {
 
 /* Styles for the form section */
 form {
-  background-color: #fff;
+  /* background-color: #fff; */
   padding: 20px;
+  border: 2px solid blue;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   max-width: 500px;
@@ -52,25 +55,25 @@ form textarea {
   border-radius: 4px;
   box-sizing: border-box;
 }
-
+form h2 {
+  text-align: center;
+  text-decoration: underline;
+  font-style: oblique;
+}
 /* form input[type="submit"] */
-button {
-  /* background-color: #007bff; */
-  background-color: red;
+.button {
+  background-color: #007bff;
+  /* background-color: red; */
   color: white;
   padding: 10px 20px;
   border: none;
-  border-radius: 4px;
+  border-radius: 10px;
+  width: 100%;
   cursor: pointer;
   font-size: 16px;
 }
 
 /* form input[type="submit"] */
-button:hover {
+.button:hover {
   background-color: #0056b3;
-}
-@media (max-width: 640px) {
-  .main {
-    display: block;
-  }
 }
