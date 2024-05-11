@@ -15,6 +15,7 @@ import { useState } from "react";
 export function UpdateTask({
   //   onUpdate,
   tasks,
+  getTask,
   //   setTask,
   //   setDescription,
   //   setCategory,
@@ -49,7 +50,7 @@ export function UpdateTask({
       .then((res) => {
         if ((res.message = "Successful")) {
           alert("Task Updated");
-          //   getTask(); // Refresh task list after creating task
+          // Refresh task list after creating task
         } else {
           res.json().then((data) => {
             console.error("Failed to create Task:", data); // Log error response
@@ -57,6 +58,7 @@ export function UpdateTask({
           });
         }
       })
+      .then(() => getTask())
       .catch((error) => {
         console.error("Update Task Error:", error);
         alert("Failed to update Task: " + error.message);

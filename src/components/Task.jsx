@@ -8,6 +8,7 @@ import UpdateTask from "@/components/UpdateTask";
 function Task({
   tasks,
   onDelete,
+  onTaskUpdated,
   // onUpdate,
 }) {
   const options = {
@@ -41,7 +42,7 @@ function Task({
         {/* onUpdate(tasks.id) */}
         <UpdateTask
           tasks={tasks}
-
+          getTask={onTaskUpdated}
           //   setTask={setTask} // Pass the function
           //   setDescription={setDescription} // Pass the function
           //   setCategory={setCategory} // Pass the function

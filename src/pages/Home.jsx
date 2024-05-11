@@ -120,13 +120,7 @@ function Home() {
               tasks={task}
               onDelete={deleteTask}
               key={task.id}
-              // updateTask={updateTask}
-              // setTask={setTask}
-              // setDescription={setDescription}
-              // setCategory={setCategory}
-              // task={task}
-              // description={description}
-              // category={category}
+              onTaskUpdated={getTask}
             />
           ))}
         </div>
