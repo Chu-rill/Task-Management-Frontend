@@ -30,7 +30,7 @@ form {
   padding: 20px;
   /* border: 2px solid blue; */
   border-radius: 8px;
-  color: white;
+  /* color: white; */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   max-width: 500px;
   margin: auto;
@@ -38,7 +38,7 @@ form {
 
 form h2 {
   /* color: #333; */
-
+  color: white;
   font-size: 24px;
   margin-bottom: 20px;
 }
@@ -46,6 +46,7 @@ form h2 {
 form label {
   font-weight: bold;
   margin-top: 10px;
+  color: white;
 }
 
 form input,

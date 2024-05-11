@@ -9,9 +9,8 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { useState } from "react";
-// import { Input } from "@/components/ui/input"
-// import { Label } from "@/components/ui/label"
-
+import { getToken } from "../jwt";
+import LoadingIndicator from "@/components/LoadingIndicator";
 export function UpdateTask({
   //   onUpdate,
   tasks,
@@ -26,49 +25,50 @@ export function UpdateTask({
   const [task, setTask] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
+  const [loading, setLoading] = useState(false);
+  const token = getToken();
 
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNodXJjaGlsbEBmYWtlLmNvbSIsImlkIjoxLCJpYXQiOjE3MTU0NTMyNjcsImV4cCI6MTcxNTQ2MDQ2N30.igpUnRyX7MA5Rh0H93cILQRwLHpg9EFc8ip5Vilt2jM";
-  // 1.34
-
-  const updateTask = (e, id) => {
-    // e.preventDefault();
-    const requestOptions = {
-      method: "PUT",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        id: id,
-        task: task,
-        description: description,
-        category: category,
-      }),
-    };
-    fetch(`http://localhost:3000/task/update`, requestOptions)
-      .then((res) => {
-        if ((res.message = "Successful")) {
-          alert("Task Updated");
-          // Refresh task list after creating task
-        } else {
-          res.json().then((data) => {
-            console.error("Failed to create Task:", data); // Log error response
-            alert("Failed to create Task");
-          });
-        }
-      })
-      .then(() => getTask())
-      .catch((error) => {
-        console.error("Update Task Error:", error);
-        alert("Failed to update Task: " + error.message);
-      })
-      .finally(() => {
-        setCategory("");
-        setTask("");
-        setDescription("");
-      });
-  };
+  //   const updateTask = (e, id) => {
+  //     // e.preventDefault();
+  //     const requestOptions = {
+  //       method: "PUT",
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({
+  //         id: id,
+  //         task: task,
+  //         description: description,
+  //         category: category,
+  //       }),
+  //     };
+  //     fetch(
+  //       `https://task-management-api-node-js-ten.vercel.app/task/update`,
+  //       requestOptions
+  //     )
+  //       .then((res) => {
+  //         if ((res.message = "Successful")) {
+  //           alert("Task Updated");
+  //           // Refresh task list after creating task
+  //         } else {
+  //           res.json().then((data) => {
+  //             console.error("Failed to create Task:", data); // Log error response
+  //             alert("Failed to create Task");
+  //           });
+  //         }
+  //       })
+  //       .then(() => getTask())
+  //       .catch((error) => {
+  //         console.error("Update Task Error:", error);
+  //         alert("Failed to update Task: " + error.message);
+  //       })
+  //       .finally(() => {
+  //         setCategory("");
+  //         setTask("");
+  //         setDescription("");
+  //       });
+  //   };
 
   //   const getTask = () => {
   //     const requestOptions = {
@@ -88,6 +88,47 @@ export function UpdateTask({
   //         console.error("Error fetching data:", error);
   //       });
   //   };
+
+  const updateTask = async (e, id) => {
+    // e.preventDefault();
+    try {
+      setLoading(true);
+      const requestOptions = {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: id,
+          task: task,
+          description: description,
+          category: category,
+        }),
+      };
+      const response = await fetch(
+        "https://task-management-api-node-js-ten.vercel.app/task/update",
+        requestOptions
+      );
+      const data = await response.json();
+      if (response.ok) {
+        alert("Task Updated");
+        await getTask(); // Refresh task list after updating task
+      } else {
+        console.error("Failed to update Task:", data); // Log error response
+        alert("Failed to update Task");
+      }
+    } catch (error) {
+      console.error("Update Task Error:", error);
+      alert("Failed to update Task: " + error.message);
+    } finally {
+      setLoading(false);
+    }
+    setCategory("");
+    setTask("");
+    setDescription("");
+  };
+
   return (
     <Dialog className=" custom-dialog">
       <DialogTrigger asChild>
@@ -96,7 +137,7 @@ export function UpdateTask({
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px] bg-neutral-800">
         <DialogHeader>
-          <DialogTitle className=" text-white">Update Task</DialogTitle>
+          <DialogTitle>Update Task</DialogTitle>
           {/* <DialogDescription>
             Make changes to your profile here. Click save when you're done.
           </DialogDescription> */}

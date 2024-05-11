@@ -1,14 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/Note.css";
-// import LoadingIndicator from "@/components/LoadingIndicator";
-// {
-//   loading && <LoadingIndicator />;
-// }
+
 import UpdateTask from "@/components/UpdateTask";
 function Task({
   tasks,
   onDelete,
   onTaskUpdated,
+
   // onUpdate,
 }) {
   const options = {

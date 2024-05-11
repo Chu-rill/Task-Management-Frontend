@@ -15,20 +15,23 @@ function Login(props) {
   // a basic function to check id there an empty input field
   async function auth() {
     if (email === "" || pass === "") {
-      setLoading(true);
       alert("Empty input Field");
     } else {
       try {
-        const response = await fetch(`http://localhost:3000/auth/loginUser`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: email,
-            password: pass,
-          }),
-        });
+        setLoading(true);
+        const response = await fetch(
+          `https://task-management-api-node-js-ten.vercel.app/auth/loginUser`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              email: email,
+              password: pass,
+            }),
+          }
+        );
 
         const res = await response.json();
         if (!response.ok) {
@@ -71,12 +74,12 @@ function Login(props) {
           value={pass}
           onChange={(e) => setPass(e.target.value)}
         />
-        {loading && <LoadingIndicator />}
+
         <button
           className="w-full bg-purple-600 text-white py-2 rounded-md hover:bg-purple-700 transition duration-300"
           onClick={auth}
         >
-          Login
+          {loading ? <LoadingIndicator /> : "Login"}
         </button>
 
         <div className="flex justify-center mt-2">

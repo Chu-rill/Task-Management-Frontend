@@ -11,21 +11,24 @@ function Register() {
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-    setLoading(true);
     e.preventDefault();
 
     try {
-      const response = await fetch(`http://localhost:3000/auth/registerUser`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username: user,
-          password: pass,
-          email: email,
-        }),
-      });
+      setLoading(true);
+      const response = await fetch(
+        `https://task-management-api-node-js-ten.vercel.app/auth/registerUser`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username: user,
+            password: pass,
+            email: email,
+          }),
+        }
+      );
       const res = await response.json();
       if (!res.ok) {
         throw new Error(res.message);
@@ -71,12 +74,11 @@ function Register() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-          {loading && <LoadingIndicator />}
           <button
             className="w-full bg-purple-600 text-white py-2 rounded-md hover:bg-purple-700 transition duration-300"
             type="submit"
           >
-            Sign Up
+            {loading ? <LoadingIndicator /> : "Sign Up"}
           </button>
 
           <div className="flex justify-center mt-2">
