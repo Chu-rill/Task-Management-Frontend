@@ -6,7 +6,7 @@ function Task({ task, onDelete }) {
 
   return (
     <>
-      <div className="note-container">
+      <div className="note-container mx-auto">
         <h2 className="note-title">{task.task}</h2>
         <p className="note-content">{task.description}</p>
         <p className="note-content">{task.category}</p>

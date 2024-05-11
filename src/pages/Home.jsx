@@ -99,9 +99,11 @@ function Home() {
     <>
       <div>
         <h2>Tasks</h2>
-        {Tasks.map((task) => (
-          <Task task={task} onDelete={deleteTask} key={task.id} />
-        ))}
+        <div className="flex flex-wrap">
+          {Tasks.map((task) => (
+            <Task task={task} onDelete={deleteTask} key={task.id} />
+          ))}
+        </div>
       </div>
       <h2>Create Task</h2>
       <form onSubmit={createTask}>
