@@ -91,7 +91,8 @@ export function UpdateTask({
   return (
     <Dialog className=" custom-dialog">
       <DialogTrigger asChild>
-        <Button variant="outline">Update Task</Button>
+        {/* <Button variant="outline"></Button> */}
+        <button>Update Task</button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>

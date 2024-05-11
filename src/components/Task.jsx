@@ -35,25 +35,21 @@ function Task({
         <h2>Category:</h2>
         <p className="note-content">{tasks.category}</p>
         <p className="note-date">{formattedDate}</p>
-        <button className="delete-button" onClick={() => onDelete(tasks.id)}>
-          Delete
-        </button>
-        <div></div>
-        {/* onUpdate(tasks.id) */}
-        <UpdateTask
-          tasks={tasks}
-          getTask={onTaskUpdated}
-          //   setTask={setTask} // Pass the function
-          //   setDescription={setDescription} // Pass the function
-          //   setCategory={setCategory} // Pass the function
-          //   task={task} // Pass the state variable
-          //   description={description} // Pass the state variable
-          //   category={category} // Pass the state variable
-          //
-        />
-        {/* <button className="update-button" onClick={ }>
-          Update
-        </button> */}
+        <div className=" mt-1 flex">
+          <button
+            className="delete-button mr-2"
+            onClick={() => onDelete(tasks.id)}
+          >
+            Delete
+          </button>
+          <div></div>
+
+          <button className="update-button">
+            <UpdateTask tasks={tasks} getTask={onTaskUpdated}>
+              Update
+            </UpdateTask>
+          </button>
+        </div>
       </div>
     </>
   );
