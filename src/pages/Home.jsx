@@ -161,7 +161,7 @@ function Home() {
             />
             <button
               className=" bg-red-700 text-white p-2 ml-8 rounded-lg"
-              onClick={deleteUser()}
+              onClick={() => deleteUser(id)}
             >
               Delete Account
             </button>
