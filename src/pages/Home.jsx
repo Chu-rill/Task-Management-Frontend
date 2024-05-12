@@ -66,6 +66,39 @@ function Home() {
     }
   };
 
+  const deleteUser = async (id) => {
+    try {
+      // Ensure that id is not undefined
+      if (typeof id === "undefined") {
+        throw new Error("id is required");
+      }
+
+      const requestOptions = {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: id,
+        }),
+      };
+      const response = await fetch(
+        "https://task-management-api-node-js-ten.vercel.app/task/delete",
+        requestOptions
+      );
+      if (response.ok) {
+        alert("Task deleted");
+        await getTask(); // Refresh task list after deleting task
+      } else {
+        alert("Failed to delete Task");
+      }
+    } catch (error) {
+      console.error("Delete Task Error:", error);
+      alert("Failed to delete Task: " + error.message);
+    }
+  };
+
   const createTask = async (e) => {
     e.preventDefault();
     try {
@@ -116,15 +149,23 @@ function Home() {
       <div className=" h-full bg-neutral-800">
         <div className=" mt-3 flex justify-around">
           <h2 className=" font-mono text-3xl text-white ml-2">Tasks</h2>
-          <AddTask
-            createTask={createTask}
-            setTask={setTask}
-            setDescription={setDescription}
-            setCategory={setCategory}
-            task={task}
-            description={description}
-            category={category}
-          />
+          <div className=" flex">
+            <AddTask
+              createTask={createTask}
+              setTask={setTask}
+              setDescription={setDescription}
+              setCategory={setCategory}
+              task={task}
+              description={description}
+              category={category}
+            />
+            <button
+              className=" bg-red-700 text-white p-2 ml-8 rounded-lg"
+              onClick={deleteUser()}
+            >
+              Delete Account
+            </button>
+          </div>
         </div>
         <div className=" sm:flex sm:flex-wrap">
           {Tasks.length === 0 ? (
