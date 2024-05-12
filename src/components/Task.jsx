@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import "../styles/Note.css";
 
 import UpdateTask from "@/components/UpdateTask";
@@ -33,16 +35,14 @@ function Task({
         <h2>Category:</h2>
         <p className="note-content">{tasks.category}</p>
         <p className="note-date">{formattedDate}</p>
-        <div className=" mt-1 flex">
-          <button
-            className="delete-button mr-2"
+        <div className=" mt-1 flex items-center">
+          <FontAwesomeIcon
+            icon={faTrash}
             onClick={() => onDelete(tasks.id)}
-          >
-            Delete
-          </button>
-          <div></div>
+            className="delete-button mr-2"
+          />
 
-          <button className="update-button">
+          <button className="update-button flex items-center">
             <UpdateTask tasks={tasks} getTask={onTaskUpdated}>
               Update
             </UpdateTask>

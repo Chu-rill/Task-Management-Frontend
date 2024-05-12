@@ -11,6 +11,8 @@ import {
 import { useState } from "react";
 import { getToken } from "../jwt";
 import LoadingIndicator from "@/components/LoadingIndicator";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
 export function UpdateTask({
   //   onUpdate,
   tasks,
@@ -133,7 +135,8 @@ export function UpdateTask({
     <Dialog className=" custom-dialog">
       <DialogTrigger asChild>
         {/* <Button variant="outline"></Button> */}
-        <button>Update Task</button>
+        {/* <button>Update Task</button> */}
+        <FontAwesomeIcon icon={faPenToSquare} />
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px] bg-neutral-800">
         <DialogHeader>

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate hook
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 import { Link } from "react-router-dom";
 import LoadingIndicator from "@/components/LoadingIndicator";
 
@@ -8,7 +10,13 @@ function Register() {
   const [pass, setPass] = useState("");
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+
   const navigate = useNavigate();
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -49,7 +57,7 @@ function Register() {
   // 1.25
 
   return (
-    <div className=" bg-neutral-800 flex flex-col items-center justify-center h-screen ">
+    <div className=" bg-neutral-800 flex flex-col items-center justify-center h-screen">
       <form onSubmit={handleSubmit}>
         <div className="  bg-gray-800 rounded-lg shadow-md p-8 max-w-sm w-full">
           <h2 className="text-2xl mb-4 font-semibold text-center">Register</h2>
@@ -61,13 +69,7 @@ function Register() {
             value={user}
             onChange={(e) => setUser(e.target.value)}
           />
-          <input
-            type="password"
-            placeholder="Password"
-            className="w-full rounded-md px-4 py-2 mb-4 bg-gray-200 text-gray-800 focus:outline-none focus:ring focus:border-purple-600"
-            value={pass}
-            onChange={(e) => setPass(e.target.value)}
-          />
+
           <input
             type="text"
             placeholder="E-mail"
@@ -75,6 +77,20 @@ function Register() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
+          <div className="relative bg-gray-200 rounded-md flex mb-4 items-center ">
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="Password"
+              className="w-full m-0 rounded-md px-4 py-2 overflow-x-auto bg-gray-200 text-gray-800 focus:outline-none focus:ring focus:border-purple-600"
+              value={pass}
+              onChange={(e) => setPass(e.target.value)}
+            />
+            <FontAwesomeIcon
+              icon={showPassword ? faEye : faEyeSlash}
+              className="absolute right-0 mr-3 text-xl hover:cursor-pointer "
+              onClick={togglePasswordVisibility}
+            />
+          </div>
           <button
             className=" flex justify-center w-full bg-purple-600 text-white py-2 rounded-md hover:bg-purple-700 transition duration-300"
             type="submit"
