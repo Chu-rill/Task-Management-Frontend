@@ -200,8 +200,8 @@ function Home() {
     getTask();
   }, []);
   return (
-    <div className=" bg-neutral-800 overflow-hidden">
-      <div>
+    <div className="h-screen bg-neutral-800 overflow-hidden">
+      <div className=" h-full bg-neutral-800">
         <div className=" mt-3 flex justify-around">
           <h2 className=" font-mono text-3xl text-white ml-2">Tasks</h2>
           <AddTask
@@ -216,7 +216,9 @@ function Home() {
         </div>
         <div className=" sm:flex sm:flex-wrap">
           {Tasks.length === 0 ? (
-            <h1 className=" text-black">No tasks available</h1>
+            <h1 className=" text-center text-5xl text-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+              Add Task
+            </h1>
           ) : (
             Tasks.map((task) => (
               <Task
