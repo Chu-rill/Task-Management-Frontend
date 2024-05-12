@@ -76,7 +76,7 @@ function Login(props) {
         />
 
         <button
-          className="w-full bg-purple-600 text-white py-2 rounded-md hover:bg-purple-700 transition duration-300"
+          className=" flex justify-center w-full bg-purple-600 text-white py-2 rounded-md hover:bg-purple-700 transition duration-300"
           onClick={auth}
         >
           {loading ? <LoadingIndicator /> : "Login"}
