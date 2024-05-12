@@ -88,7 +88,7 @@ function Home() {
         requestOptions
       );
       if (response.ok) {
-        alert("Task deleted");
+        alert("User deleted");
         await getTask(); // Refresh task list after deleting task
       } else {
         alert("Failed to delete Task");
@@ -161,7 +161,7 @@ function Home() {
             />
             <button
               className=" bg-red-700 text-white p-2 ml-8 rounded-lg"
-              onClick={() => deleteUser(id)}
+              onClick={() => deleteUser(Tasks.id)}
             >
               Delete Account
             </button>
