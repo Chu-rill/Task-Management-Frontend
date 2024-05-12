@@ -137,7 +137,7 @@ export function UpdateTask({
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px] bg-neutral-800">
         <DialogHeader>
-          <DialogTitle>Update Task</DialogTitle>
+          <DialogTitle className=" text-white">Update Task</DialogTitle>
           {/* <DialogDescription>
             Make changes to your profile here. Click save when you're done.
           </DialogDescription> */}
