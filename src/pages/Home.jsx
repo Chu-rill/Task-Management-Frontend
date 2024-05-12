@@ -106,7 +106,7 @@ function Home() {
     getTask();
   }, []);
   return (
-    <div className="h-full bg-neutral-800 ">
+    <div className="h-full bg-neutral-800  p-2">
       <div className=" h-full bg-neutral-800">
         <div className=" mt-3 flex justify-around">
           <h2 className=" font-mono text-3xl text-white ml-2">Tasks</h2>
