@@ -140,9 +140,9 @@ function Home() {
       //     ? "h-screen bg-neutral-800 p-2"
       //     : "h-full bg-neutral-800 p-2"
       // }
-      className="h-screen bg-neutral-800 p-2"
+      className="h-full bg-neutral-800 p-2"
     >
-      <div className=" h-screen bg-neutral-800">
+      <div className=" h-full bg-neutral-800">
         <div className=" mt-3 flex justify-around">
           <h2 className=" font-mono text-3xl text-white ml-2">Tasks</h2>
           <div className=" flex">
