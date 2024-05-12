@@ -61,35 +61,35 @@ function Home() {
     }
   };
 
-  const deleteUser = async () => {
-    try {
-      // Ensure that id is not undefined
-      if (typeof id === "undefined") {
-        throw new Error("id is required");
-      }
+  // const deleteUser = async () => {
+  //   try {
+  //     // Ensure that id is not undefined
+  //     if (typeof id === "undefined") {
+  //       throw new Error("id is required");
+  //     }
 
-      const requestOptions = {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-        // body: JSON.stringify({
-        //   id: id,
-        // }),
-      };
-      const response = await fetch("liveLink/task/deleteUser", requestOptions);
-      if (response.ok) {
-        alert("User deleted");
-        await getTask(); // Refresh task list after deleting task
-      } else {
-        alert("Failed to delete Task");
-      }
-    } catch (error) {
-      console.error("Delete Task Error:", error);
-      alert("Failed to delete Task: " + error.message);
-    }
-  };
+  //     const requestOptions = {
+  //       method: "DELETE",
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //         "Content-Type": "application/json",
+  //       },
+  //       // body: JSON.stringify({
+  //       //   id: id,
+  //       // }),
+  //     };
+  //     const response = await fetch("liveLink/task/deleteUser", requestOptions);
+  //     if (response.ok) {
+  //       alert("User deleted");
+  //       await getTask(); // Refresh task list after deleting task
+  //     } else {
+  //       alert("Failed to delete Task");
+  //     }
+  //   } catch (error) {
+  //     console.error("Delete Task Error:", error);
+  //     alert("Failed to delete Task: " + error.message);
+  //   }
+  // };
 
   const createTask = async (e) => {
     e.preventDefault();
@@ -150,12 +150,12 @@ function Home() {
               category={category}
             />
             {console.log(Tasks.id)}
-            <button
+            {/* <button
               className=" bg-red-700 text-white p-2 ml-8 rounded-lg"
               onClick={() => deleteUser()}
             >
               Delete Account
-            </button>
+            </button> */}
           </div>
         </div>
         <div className=" sm:flex sm:flex-wrap">
