@@ -30,17 +30,18 @@ function Register() {
         }
       );
       const res = await response.json();
-      if (!res.ok) {
-        throw new Error(res.message);
-      }
+      // if (!res.ok) {
+      //   throw new Error(res.message);
+      // }
       setUser("");
       setPass("");
       setEmail("");
       console.log(res);
       alert("User Created");
-      navigate("/login"); // Redirect to "/home" upon successful sign up
+      navigate("/login"); // Redirect to "/login" upon successful sign up
     } catch (error) {
-      alert(error);
+      // alert(error);
+      console.log(error);
     } finally {
       setLoading(false);
     }
@@ -75,7 +76,7 @@ function Register() {
             onChange={(e) => setEmail(e.target.value)}
           />
           <button
-            className="w-full bg-purple-600 text-white py-2 rounded-md hover:bg-purple-700 transition duration-300"
+            className=" flex justify-center w-full bg-purple-600 text-white py-2 rounded-md hover:bg-purple-700 transition duration-300"
             type="submit"
           >
             {loading ? <LoadingIndicator /> : "Sign Up"}

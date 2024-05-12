@@ -34,9 +34,9 @@ function Login(props) {
         );
 
         const res = await response.json();
-        if (!response.ok) {
-          throw new Error(res.message);
-        }
+        // if (!response.ok) {
+        //   throw new Error(res.message);
+        // }
         setPass("");
         setEmail("");
 
@@ -46,10 +46,11 @@ function Login(props) {
 
         // Store token in session storage
         storeToken(token);
-        alert("User Login");
+        alert("User Login Successful");
         navigate("/home");
       } catch (error) {
-        alert(error);
+        // alert(error);
+        console.log(error);
       } finally {
         setLoading(false);
       }
