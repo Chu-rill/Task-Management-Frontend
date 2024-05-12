@@ -22,7 +22,10 @@ function Home() {
           "Content-Type": "application/json",
         },
       };
-      const response = await fetch("liveLink/task/getAllTask", requestOptions);
+      const response = await fetch(
+        `${liveLink}/task/getAllTask`,
+        requestOptions
+      );
       const data = await response.json();
       setTasks(data.data);
       console.log(data);
@@ -48,7 +51,7 @@ function Home() {
           id: id,
         }),
       };
-      const response = await fetch("liveLink/task/delete", requestOptions);
+      const response = await fetch(`${liveLink}/task/delete`, requestOptions);
       if (response.ok) {
         alert("Task deleted");
         await getTask(); // Refresh task list after deleting task
@@ -61,35 +64,38 @@ function Home() {
     }
   };
 
-  // const deleteUser = async () => {
-  //   try {
-  //     // Ensure that id is not undefined
-  //     if (typeof id === "undefined") {
-  //       throw new Error("id is required");
-  //     }
+  const deleteUser = async () => {
+    try {
+      // Ensure that id is not undefined
+      if (typeof id === "undefined") {
+        throw new Error("id is required");
+      }
 
-  //     const requestOptions = {
-  //       method: "DELETE",
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //         "Content-Type": "application/json",
-  //       },
-  //       // body: JSON.stringify({
-  //       //   id: id,
-  //       // }),
-  //     };
-  //     const response = await fetch("liveLink/task/deleteUser", requestOptions);
-  //     if (response.ok) {
-  //       alert("User deleted");
-  //       await getTask(); // Refresh task list after deleting task
-  //     } else {
-  //       alert("Failed to delete Task");
-  //     }
-  //   } catch (error) {
-  //     console.error("Delete Task Error:", error);
-  //     alert("Failed to delete Task: " + error.message);
-  //   }
-  // };
+      const requestOptions = {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        // body: JSON.stringify({
+        //   id: id,
+        // }),
+      };
+      const response = await fetch(
+        `${liveLink}/task/deleteUser`,
+        requestOptions
+      );
+      if (response.ok) {
+        alert("User deleted");
+        await getTask(); // Refresh task list after deleting task
+      } else {
+        alert("Failed to delete Task");
+      }
+    } catch (error) {
+      console.error("Delete Task Error:", error);
+      alert("Failed to delete Task: " + error.message);
+    }
+  };
 
   const createTask = async (e) => {
     e.preventDefault();
@@ -106,7 +112,7 @@ function Home() {
           category: category,
         }),
       };
-      const response = await fetch("liveLink/task/addTask", requestOptions);
+      const response = await fetch(`${liveLink}/task/addTask`, requestOptions);
       const data = await response.json();
       if (response.ok) {
         alert("Task Created");
@@ -149,7 +155,7 @@ function Home() {
               description={description}
               category={category}
             />
-            {console.log(Tasks.id)}
+            {console.log(Tasks)}
             {/* <button
               className=" bg-red-700 text-white p-2 ml-8 rounded-lg"
               onClick={() => deleteUser()}

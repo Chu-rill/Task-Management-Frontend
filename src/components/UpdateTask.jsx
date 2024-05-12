@@ -13,6 +13,7 @@ import { getToken } from "../jwt";
 import LoadingIndicator from "@/components/LoadingIndicator";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
+import { liveLink, localLink } from "../api";
 export function UpdateTask({
   //   onUpdate,
   tasks,
@@ -108,10 +109,7 @@ export function UpdateTask({
           category: category,
         }),
       };
-      const response = await fetch(
-        "https://task-management-api-node-js-ten.vercel.app/task/update",
-        requestOptions
-      );
+      const response = await fetch(`${liveLink}/task/update`, requestOptions);
       const data = await response.json();
       if (response.ok) {
         alert("Task Updated");
