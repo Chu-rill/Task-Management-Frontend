@@ -38,7 +38,7 @@ function Register() {
       setEmail("");
       console.log(res);
       alert("User Created");
-      navigate("/home"); // Redirect to "/home" upon successful sign up
+      navigate("/login"); // Redirect to "/home" upon successful sign up
     } catch (error) {
       alert(error);
     } finally {
