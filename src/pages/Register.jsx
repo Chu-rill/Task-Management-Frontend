@@ -45,8 +45,17 @@ function Register() {
       setPass("");
       setEmail("");
       console.log(res);
-      alert("User Created");
-      navigate("/login"); // Redirect to "/login" upon successful sign up
+      if (res.message === "Successful") {
+        alert("User Created");
+        navigate("/login");
+      }
+      if (res.message === "Something went wrong") {
+        alert("Something went wrong");
+      }
+      if (res.message === "User already exists") {
+        alert("User already exists");
+      }
+      // Redirect to "/login" upon successful sign up
     } catch (error) {
       // alert(error);
       console.log(error);
