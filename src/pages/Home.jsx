@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import "../styles/Home.css";
 import AddTask from "@/components/AddTask";
 import { getToken } from "../jwt";
+import { liveLink, localLink } from "../api";
 
 function Home() {
   const [Tasks, setTasks] = useState([]);
@@ -21,10 +22,7 @@ function Home() {
           "Content-Type": "application/json",
         },
       };
-      const response = await fetch(
-        "https://task-management-api-node-js-ten.vercel.app/task/getAllTask",
-        requestOptions
-      );
+      const response = await fetch("liveLink/task/getAllTask", requestOptions);
       const data = await response.json();
       setTasks(data.data);
       console.log(data);
@@ -50,10 +48,7 @@ function Home() {
           id: id,
         }),
       };
-      const response = await fetch(
-        "https://task-management-api-node-js-ten.vercel.app/task/delete",
-        requestOptions
-      );
+      const response = await fetch("liveLink/task/delete", requestOptions);
       if (response.ok) {
         alert("Task deleted");
         await getTask(); // Refresh task list after deleting task
@@ -66,7 +61,7 @@ function Home() {
     }
   };
 
-  const deleteUser = async (id) => {
+  const deleteUser = async () => {
     try {
       // Ensure that id is not undefined
       if (typeof id === "undefined") {
@@ -79,14 +74,11 @@ function Home() {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          id: id,
-        }),
+        // body: JSON.stringify({
+        //   id: id,
+        // }),
       };
-      const response = await fetch(
-        "https://task-management-api-node-js-ten.vercel.app/task/delete",
-        requestOptions
-      );
+      const response = await fetch("liveLink/task/deleteUser", requestOptions);
       if (response.ok) {
         alert("User deleted");
         await getTask(); // Refresh task list after deleting task
@@ -114,10 +106,7 @@ function Home() {
           category: category,
         }),
       };
-      const response = await fetch(
-        "https://task-management-api-node-js-ten.vercel.app/task/addTask",
-        requestOptions
-      );
+      const response = await fetch("liveLink/task/addTask", requestOptions);
       const data = await response.json();
       if (response.ok) {
         alert("Task Created");
@@ -160,9 +149,10 @@ function Home() {
               description={description}
               category={category}
             />
+            {console.log(Tasks.id)}
             <button
               className=" bg-red-700 text-white p-2 ml-8 rounded-lg"
-              onClick={() => deleteUser(Tasks.id)}
+              onClick={() => deleteUser()}
             >
               Delete Account
             </button>
