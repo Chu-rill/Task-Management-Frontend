@@ -24,7 +24,7 @@ function Register() {
 
     try {
       setLoading(true);
-      const response = await fetch(`${localLink}/auth/registerUser`, {
+      const response = await fetch(`${liveLink}/auth/registerUser`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
