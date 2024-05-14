@@ -52,7 +52,7 @@ function Task({
         }),
       };
       const response = await fetch(
-        `${localLink}/task/updateStatus`,
+        `${liveLink}/task/updateStatus`,
         requestOptions
       );
       const data = await response.json();

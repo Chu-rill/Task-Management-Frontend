@@ -24,7 +24,7 @@ function Home() {
         },
       };
       const response = await fetch(
-        `${localLink}/task/getAllTask`,
+        `${liveLink}/task/getAllTask`,
         requestOptions
       );
       const data = await response.json();
@@ -52,7 +52,7 @@ function Home() {
           id: id,
         }),
       };
-      const response = await fetch(`${localLink}/task/delete`, requestOptions);
+      const response = await fetch(`${liveLink}/task/delete`, requestOptions);
       if (response.ok) {
         alert("Task deleted");
         await getTask(); // Refresh task list after deleting task
@@ -83,7 +83,7 @@ function Home() {
         // }),
       };
       const response = await fetch(
-        `${localLink}/task/deleteUser`,
+        `${liveLink}/task/deleteUser`,
         requestOptions
       );
       if (response.ok) {
@@ -113,7 +113,7 @@ function Home() {
           category: category,
         }),
       };
-      const response = await fetch(`${localLink}/task/addTask`, requestOptions);
+      const response = await fetch(`${liveLink}/task/addTask`, requestOptions);
       const data = await response.json();
       if (response.ok) {
         alert("Task Created");

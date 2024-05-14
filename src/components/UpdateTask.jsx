@@ -44,7 +44,7 @@ export function UpdateTask({
           category: category,
         }),
       };
-      const response = await fetch(`${localLink}/task/update`, requestOptions);
+      const response = await fetch(`${liveLink}/task/update`, requestOptions);
       const data = await response.json();
       if (response.ok) {
         alert("Task Updated");
