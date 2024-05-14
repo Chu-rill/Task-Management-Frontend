@@ -10,6 +10,7 @@ function Home() {
   const [task, setTask] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
+  let status;
 
   const token = getToken();
 
@@ -23,7 +24,7 @@ function Home() {
         },
       };
       const response = await fetch(
-        `${liveLink}/task/getAllTask`,
+        `${localLink}/task/getAllTask`,
         requestOptions
       );
       const data = await response.json();
@@ -51,7 +52,7 @@ function Home() {
           id: id,
         }),
       };
-      const response = await fetch(`${liveLink}/task/delete`, requestOptions);
+      const response = await fetch(`${localLink}/task/delete`, requestOptions);
       if (response.ok) {
         alert("Task deleted");
         await getTask(); // Refresh task list after deleting task
@@ -82,7 +83,7 @@ function Home() {
         // }),
       };
       const response = await fetch(
-        `${liveLink}/task/deleteUser`,
+        `${localLink}/task/deleteUser`,
         requestOptions
       );
       if (response.ok) {
@@ -112,7 +113,7 @@ function Home() {
           category: category,
         }),
       };
-      const response = await fetch(`${liveLink}/task/addTask`, requestOptions);
+      const response = await fetch(`${localLink}/task/addTask`, requestOptions);
       const data = await response.json();
       if (response.ok) {
         alert("Task Created");
@@ -135,12 +136,12 @@ function Home() {
   }, []);
   return (
     <div
-      // className={
-      //   Tasks.length === 0
-      //     ? "h-screen bg-neutral-800 p-2"
-      //     : "h-full bg-neutral-800 p-2"
-      // }
-      className="h-full bg-neutral-800 p-2"
+      className={
+        Tasks.length === 0
+          ? "h-screen bg-neutral-800 p-2"
+          : "h-full bg-neutral-800 p-2"
+      }
+      // className="h-full bg-neutral-800 p-2"
     >
       <div className=" h-full bg-neutral-800">
         <div className=" mt-3 flex justify-around">
@@ -176,6 +177,7 @@ function Home() {
                 onDelete={deleteTask}
                 key={task.id}
                 onTaskUpdated={getTask}
+                getTask={getTask}
               />
             ))
           )}

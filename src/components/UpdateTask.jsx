@@ -14,83 +14,18 @@ import LoadingIndicator from "@/components/LoadingIndicator";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
 import { liveLink, localLink } from "../api";
+
 export function UpdateTask({
   //   onUpdate,
   tasks,
   getTask,
-  //   setTask,
-  //   setDescription,
-  //   setCategory,
-  //   task,
-  //   description,
-  //   category,
+  // status,
 }) {
   const [task, setTask] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
   const [loading, setLoading] = useState(false);
   const token = getToken();
-
-  //   const updateTask = (e, id) => {
-  //     // e.preventDefault();
-  //     const requestOptions = {
-  //       method: "PUT",
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({
-  //         id: id,
-  //         task: task,
-  //         description: description,
-  //         category: category,
-  //       }),
-  //     };
-  //     fetch(
-  //       `https://task-management-api-node-js-ten.vercel.app/task/update`,
-  //       requestOptions
-  //     )
-  //       .then((res) => {
-  //         if ((res.message = "Successful")) {
-  //           alert("Task Updated");
-  //           // Refresh task list after creating task
-  //         } else {
-  //           res.json().then((data) => {
-  //             console.error("Failed to create Task:", data); // Log error response
-  //             alert("Failed to create Task");
-  //           });
-  //         }
-  //       })
-  //       .then(() => getTask())
-  //       .catch((error) => {
-  //         console.error("Update Task Error:", error);
-  //         alert("Failed to update Task: " + error.message);
-  //       })
-  //       .finally(() => {
-  //         setCategory("");
-  //         setTask("");
-  //         setDescription("");
-  //       });
-  //   };
-
-  //   const getTask = () => {
-  //     const requestOptions = {
-  //       method: "GET",
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //         "Content-Type": "application/json",
-  //       },
-  //     };
-  //     fetch("http://localhost:3000/task/getAllTask", requestOptions)
-  //       .then((res) => res.json())
-  //       .then((data) => {
-  //         setTasks(data.data);
-  //         console.log(data);
-  //       })
-  //       .catch((error) => {
-  //         console.error("Error fetching data:", error);
-  //       });
-  //   };
 
   const updateTask = async (e, id) => {
     // e.preventDefault();
@@ -109,11 +44,15 @@ export function UpdateTask({
           category: category,
         }),
       };
-      const response = await fetch(`${liveLink}/task/update`, requestOptions);
+      const response = await fetch(`${localLink}/task/update`, requestOptions);
       const data = await response.json();
       if (response.ok) {
         alert("Task Updated");
-        await getTask(); // Refresh task list after updating task
+        // status("pending");
+        tasks.status = "pending";
+
+        console.log("update");
+        getTask(); // Refresh task list after updating task
       } else {
         console.error("Failed to update Task:", data); // Log error response
         alert("Failed to update Task");
@@ -124,6 +63,7 @@ export function UpdateTask({
     } finally {
       setLoading(false);
     }
+
     setCategory("");
     setTask("");
     setDescription("");

@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 import { Link } from "react-router-dom";
 import LoadingIndicator from "@/components/LoadingIndicator";
+import { liveLink, localLink } from "../api";
 
 function Register() {
   const [user, setUser] = useState("");
@@ -23,20 +24,17 @@ function Register() {
 
     try {
       setLoading(true);
-      const response = await fetch(
-        `https://task-management-api-node-js-ten.vercel.app/auth/registerUser`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            username: user,
-            password: pass,
-            email: email,
-          }),
-        }
-      );
+      const response = await fetch(`${localLink}/auth/registerUser`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: user,
+          password: pass,
+          email: email,
+        }),
+      });
       const res = await response.json();
       // if (!res.ok) {
       //   throw new Error(res.message);
