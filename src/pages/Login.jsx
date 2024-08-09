@@ -25,7 +25,7 @@ function Login(props) {
     } else {
       try {
         setLoading(true);
-        const response = await fetch(`${liveLink}/auth/loginUser`, {
+        const response = await fetch(`${localLink}/auth/loginUser`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

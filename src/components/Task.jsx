@@ -60,7 +60,7 @@ function Task({
         // Refresh task list after updating task
         setStatus("completed");
 
-        getTask();
+        // getTask();
         console.log("updated");
       } else {
         console.error("Failed to update status:", data); // Log error response
@@ -72,6 +72,9 @@ function Task({
     }
   };
 
+  // useEffect(() => {
+  //   getTask();
+  // }, [updateStatus])
   return (
     <>
       <div className="note-container sm:w-[45%] m-4 w-[80%] bg-gray-800 text-white mx-auto">

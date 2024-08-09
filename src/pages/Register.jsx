@@ -24,7 +24,7 @@ function Register() {
 
     try {
       setLoading(true);
-      const response = await fetch(`${liveLink}/auth/registerUser`, {
+      const response = await fetch(`${localLink}/auth/registerUser`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -45,7 +45,7 @@ function Register() {
       console.log(res);
       if (res.message === "Successful") {
         alert("User Created");
-        navigate("/login");
+        navigate("/home");
       }
       if (res.message === "Something went wrong") {
         alert("Something went wrong");
